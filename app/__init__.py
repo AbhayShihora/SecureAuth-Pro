@@ -1,5 +1,4 @@
 from flask import Flask
-from app.routes.main import main
 
 from config import Config
 from app.extensions import (
@@ -9,6 +8,9 @@ from app.extensions import (
     mail,
     migrate,
 )
+
+from app.routes.main import main
+from app.models import User
 
 
 def create_app():
@@ -21,9 +23,9 @@ def create_app():
     mail.init_app(app)
     migrate.init_app(app, db)
 
-    login_manager.login_view = "auth.login"
+    #login_manager.login_view = "auth.login"
     login_manager.login_message_category = "warning"
 
-    #for main.py page
     app.register_blueprint(main)
+
     return app

@@ -5,7 +5,21 @@ from flask_mail import Mail
 from flask_migrate import Migrate
 
 db = SQLAlchemy()
+
 login_manager = LoginManager()
+login_manager.login_view = "auth.login"
+login_manager.login_message_category = "warning"
+
 bcrypt = Bcrypt()
 mail = Mail()
 migrate = Migrate()
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    """
+    Load a user by ID for Flask-Login.
+    """
+    from app.models.user import User
+
+    return User.query.get(int(user_id))

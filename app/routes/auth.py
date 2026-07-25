@@ -1,10 +1,15 @@
+from flask import Blueprint, render_template, redirect, url_for, flash, request
+from flask_login import logout_user, login_required
+
 from app.forms.auth_forms import RegistrationForm, LoginForm
 from app.services.auth_service import register_user, login_user_service
-from flask import Blueprint, render_template, redirect, url_for, flash, request
 
+# Create Blueprint
 auth = Blueprint("auth", __name__)
 
-#Registration route
+# -------------------------
+# Registration Route
+# -------------------------
 @auth.route("/register", methods=["GET", "POST"])
 def register():
     print("===== REGISTER ROUTE CALLED =====")
@@ -29,7 +34,10 @@ def register():
 
     return render_template("auth/register.html", form=form)
 
-#Login route
+
+# -------------------------
+# Login Route
+# -------------------------
 @auth.route("/login", methods=["GET", "POST"])
 def login():
 
@@ -47,3 +55,16 @@ def login():
 
     return render_template("auth/login.html", form=form)
 
+
+# -------------------------
+# Logout Route
+# -------------------------
+@auth.route("/logout")
+@login_required
+def logout():
+
+    logout_user()
+
+    flash("You have been logged out successfully.", "success")
+
+    return redirect(url_for("auth.login"))

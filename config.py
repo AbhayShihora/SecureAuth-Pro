@@ -10,10 +10,15 @@ class Config:
     DATABASE_URL = os.getenv("DATABASE_URL")
 
     if DATABASE_URL:
-        # Render PostgreSQL
+        if DATABASE_URL.startswith("postgresql://"):
+            DATABASE_URL = DATABASE_URL.replace(
+                "postgresql://",
+                "postgresql+psycopg://",
+                1,
+            )
+
         SQLALCHEMY_DATABASE_URI = DATABASE_URL
     else:
-        # Local MySQL
         SQLALCHEMY_DATABASE_URI = (
             f"mysql+pymysql://{os.getenv('DB_USER')}:"
             f"{os.getenv('DB_PASSWORD')}@"

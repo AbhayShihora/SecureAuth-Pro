@@ -5,6 +5,8 @@ resend.api_key = os.getenv("RESEND_API_KEY")
 
 
 def send_otp_email(email, otp):
+    print(f"Sending OTP to: {email}")
+
     resend.Emails.send({
         "from": "onboarding@resend.dev",
         "to": [email],

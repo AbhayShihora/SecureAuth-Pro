@@ -8,7 +8,7 @@ def send_otp_email(email, otp):
     print(f"Sending OTP to: shihoraabhay@gmail.com")
 
     resend.Emails.send({
-        "from": "shihoraabhay0@gmail.com",
+        "from": "onboarding@resend.dev",
         "to": "shihoraabhay@gmail.com",
         "subject": "OTP Verification",
         "html": f"""

@@ -9,12 +9,12 @@ from app.extensions import (
     migrate,
 )
 
-# Import Blueprints
 from app.routes.main import main
 from app.routes.auth import auth
-
-# Import Models
 from app.models import User
+
+from flask_migrate import upgrade
+
 
 def create_app():
     app = Flask(__name__)
@@ -27,9 +27,11 @@ def create_app():
     mail.init_app(app)
     migrate.init_app(app, db)
 
+    # 👇 ADD THESE 3 LINES
+    with app.app_context():
+        upgrade()
+
     # Flask-Login Configuration
-    # We'll enable login_view after creating the login route
-    # login_manager.login_view = "auth.login"
     login_manager.login_message_category = "warning"
 
     # Register Blueprints

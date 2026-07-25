@@ -5,9 +5,6 @@ from app.models.base import BaseModel
 
 from datetime import datetime
 
-otp = db.Column(db.String(6), nullable=True)
-otp_expiry = db.Column(db.DateTime, nullable=True)
-
 class User(UserMixin, BaseModel):
     __tablename__ = "users"
 
@@ -28,8 +25,10 @@ class User(UserMixin, BaseModel):
     last_login = db.Column(db.DateTime,  nullable=True )
     
     otp = db.Column(db.String(6), nullable=True)
-    
+
     otp_expiry = db.Column(db.DateTime, nullable=True)
+
+    role = db.Column(db.String(20), nullable=False,default="user")
 
     def __repr__(self):
         return f"<User {self.username}>"

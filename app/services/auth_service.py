@@ -81,9 +81,12 @@ def login_user_service(form):
     if not user:
         return False, "No account found with this email."
 
+    if not user.is_active:
+        return False, "Your account has been deactivated. Please contact the administrator."
+    
     if not user.is_verified:
         return False, "Please verify your email before logging in."
-    
+
     # Step 3: Verify password
     if not bcrypt.check_password_hash(
         user.password_hash,

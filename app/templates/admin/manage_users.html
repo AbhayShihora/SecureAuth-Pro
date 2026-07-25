@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Users{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">Manage Users</h2>
+
+    <table class="table table-bordered table-hover">
+
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Verified</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Role Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.full_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    {% if user.is_verified %}
+                        ✅
+                    {% else %}
+                        ❌
+                    {% endif %}
+                </td>
+                <td>
+                    {% if user.is_active %}
+                        Active
+                    {% else %}
+                        Disabled
+                    {% endif %}
+                </td>
+                <td>
+                    {% if user.is_active %}
+                        <a href="{{ url_for('main.toggle_user_status', user_id=user.id) }}"
+                            class="btn btn-warning btn-sm">
+                            Deactivate
+                        </a>
+
+                    {% else %}
+                        <a href="{{ url_for('main.toggle_user_status', user_id=user.id) }}"
+                            class="btn btn-success btn-sm">
+                            Activate
+                        </a>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if user.id != current_user.id %}
+                        {% if user.role == "user" %}
+                            <a href="{{ url_for('main.change_role', user_id=user.id) }}"
+                            class="btn btn-primary btn-sm">
+                                Make Admin
+                            </a>
+
+                        {% else %}
+                            <a href="{{ url_for('main.change_role', user_id=user.id) }}"
+                            class="btn btn-secondary btn-sm">
+                                Make User
+                            </a>
+                        {% endif %}
+                    {% else %}
+                        --
+                    {% endif %}
+
+                </td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

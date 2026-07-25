@@ -3,6 +3,8 @@ from wtforms import (StringField, PasswordField, BooleanField,SubmitField,)
 from wtforms.validators import (DataRequired,Length,Email,EqualTo,)
 
 
+
+
 # Registration form class
 class RegistrationForm(FlaskForm):
     full_name = StringField("Full Name",validators=[DataRequired(), Length(min=3, max=100)  ] )
@@ -28,3 +30,15 @@ class LoginForm(FlaskForm):
     remember = BooleanField("Remember Me")
 
     submit = SubmitField("Login")
+
+#OTP form class
+class OTPForm(FlaskForm):
+    otp = StringField(
+        "Enter OTP",
+        validators=[
+            DataRequired(),
+            Length(min=6, max=6)
+        ]
+    )
+
+    submit = SubmitField("Verify OTP")

@@ -1,6 +1,9 @@
 from app.models.user import User
 from app.extensions import db, bcrypt
 from flask_login import login_user
+from app.utils.otp import generate_otp
+from datetime import datetime, timedelta
+from app.services.mail_service import send_otp_email
 
 #Registration service function
 def register_user(form):
@@ -15,6 +18,7 @@ def register_user(form):
         if existing_user:
             return False, "Username already exists."
 
+        
         print("Step 2: Checking email")
 
         existing_email = User.query.filter_by(
@@ -33,12 +37,14 @@ def register_user(form):
 
         print("Step 4: Creating user")
 
+        otp = generate_otp()
+        expiry = datetime.utcnow() + timedelta(minutes=5)
+
         user = User(
-            full_name=form.full_name.data,
-            username=form.username.data,
-            email=form.email.data,
-            password_hash=hashed_password
-        )
+                    full_name=form.full_name.data, username=form.username.data,
+                    email=form.email.data,  password_hash=hashed_password,
+                    is_verified=False, otp=otp,otp_expiry=expiry
+                )
 
         print("Step 5: Adding to session")
 
@@ -48,8 +54,10 @@ def register_user(form):
 
         db.session.commit()
 
-        print("✅ User Saved Successfully")
+        #Send OTP email
+        send_otp_email(user.email, otp)
 
+        print("✅ User Saved Successfully")
         return True, "Registration successful!"
 
     except Exception as e:
@@ -73,6 +81,9 @@ def login_user_service(form):
     if not user:
         return False, "No account found with this email."
 
+    if not user.is_verified:
+        return False, "Please verify your email before logging in."
+    
     # Step 3: Verify password
     if not bcrypt.check_password_hash(
         user.password_hash,

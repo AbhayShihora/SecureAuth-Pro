@@ -16,7 +16,6 @@ from app.routes.auth import auth
 # Import Models
 from app.models import User
 
-
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)

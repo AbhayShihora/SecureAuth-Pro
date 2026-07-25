@@ -30,6 +30,6 @@ def send_otp_email(recipient_email, otp):
     SecureAuth Pro Team
     """
 
-    #mail.send(msg)
+    mail.send(msg)
     print("OTP Email skipped for testing")
     return

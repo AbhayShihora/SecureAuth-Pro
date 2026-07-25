@@ -7,9 +7,7 @@ from app.services.mail_service import send_otp_email
 
 #Registration service function
 def register_user(form):
-    print("INSIDE register_user()")
     try:
-        print("Step 1: Checking username")
 
         existing_user = User.query.filter_by(
             username=form.username.data
@@ -18,9 +16,6 @@ def register_user(form):
         if existing_user:
             return False, "Username already exists."
 
-        
-        print("Step 2: Checking email")
-
         existing_email = User.query.filter_by(
             email=form.email.data
         ).first()
@@ -28,14 +23,9 @@ def register_user(form):
         if existing_email:
             return False, "Email already exists."
 
-        print("Step 3: Hashing password")
-
-        print("Password:", repr(form.password.data))
         hashed_password = bcrypt.generate_password_hash(
             form.password.data
         ).decode("utf-8")
-
-        print("Step 4: Creating user")
 
         otp = generate_otp()
         expiry = datetime.utcnow() + timedelta(minutes=5)
@@ -46,23 +36,17 @@ def register_user(form):
                     is_verified=False, otp=otp,otp_expiry=expiry
                 )
 
-        print("Step 5: Adding to session")
-
         db.session.add(user)
-
-        print("Step 6: Commit")
 
         db.session.commit()
 
         #Send OTP email
         send_otp_email(user.email, otp)
 
-        print("✅ User Saved Successfully")
         return True, "Registration successful!"
 
     except Exception as e:
         db.session.rollback()
-        print("❌ ERROR:", e)
         return False, str(e)
 
 #Login service function

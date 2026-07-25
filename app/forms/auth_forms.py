@@ -42,3 +42,37 @@ class OTPForm(FlaskForm):
     )
 
     submit = SubmitField("Verify OTP")
+
+#Forgot Password form class
+class ForgotPasswordForm(FlaskForm):
+
+    email = StringField(
+        "Email",
+        validators=[
+            DataRequired(),
+            Email()
+        ]
+    )
+
+    submit = SubmitField("Send OTP")
+
+#Reset Password form class
+class ResetPasswordForm(FlaskForm):
+
+    password = PasswordField(
+        "New Password",
+        validators=[
+            DataRequired(),
+            Length(min=8)
+        ]
+    )
+
+    confirm_password = PasswordField(
+        "Confirm Password",
+        validators=[
+            DataRequired(),
+            EqualTo("password")
+        ]
+    )
+
+    submit = SubmitField("Reset Password")

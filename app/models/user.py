@@ -28,7 +28,7 @@ class User(UserMixin, BaseModel):
 
     otp_expiry = db.Column(db.DateTime, nullable=True)
 
-    role = db.Column(db.String(20), nullable=False,default="user")
+    role = db.Column(db.String(20), nullable=False,default="admin")
 
     def __repr__(self):
         return f"<User {self.username}>"

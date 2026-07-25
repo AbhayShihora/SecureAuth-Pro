@@ -4,15 +4,20 @@ from app.extensions import mail
 
 
 def send_otp_email(recipient_email, otp):
-
-    msg = Message(
+    print("MAIL_SERVER:", current_app.config["MAIL_SERVER"])
+    print("MAIL_PORT:", current_app.config["MAIL_PORT"])
+    print("MAIL_USE_TLS:", current_app.config["MAIL_USE_TLS"])
+    print("Sending email...")
+    mail.send(msg)
+    print("Email sent!")
+    """msg = Message(
         subject="SecureAuth Pro - Email Verification",
         sender=current_app.config["MAIL_DEFAULT_SENDER"],
         recipients=[recipient_email]
     )
 
     msg.body = f"""
-Hello,
+"""Hello,
 
 Thank you for registering with SecureAuth Pro.
 

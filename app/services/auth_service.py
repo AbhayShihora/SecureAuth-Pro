@@ -1,10 +1,8 @@
 from app.models.user import User
 from app.extensions import db, bcrypt
+from flask_login import login_user
 
-from app.models.user import User
-from app.extensions import db, bcrypt
-
-
+#Registration service function
 def register_user(form):
     print("INSIDE register_user()")
     try:
@@ -58,3 +56,31 @@ def register_user(form):
         db.session.rollback()
         print("❌ ERROR:", e)
         return False, str(e)
+
+#Login service function
+def login_user_service(form):
+    """
+    Authenticate a user using email and password.
+    Returns:
+        (True, "Login successful.") on success
+        (False, "Error message") on failure
+    """
+
+    # Step 1: Find user by email
+    user = User.query.filter_by(email=form.email.data).first()
+
+    # Step 2: User not found
+    if not user:
+        return False, "No account found with this email."
+
+    # Step 3: Verify password
+    if not bcrypt.check_password_hash(
+        user.password_hash,
+        form.password.data
+    ):
+        return False, "Incorrect password."
+
+    # Step 4: Login user
+    login_user(user, remember=form.remember.data)
+
+    return True, "Login successful."

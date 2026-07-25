@@ -7,7 +7,10 @@ from flask_migrate import Migrate
 db = SQLAlchemy()
 
 login_manager = LoginManager()
+
+# Flask-Login Configuration
 login_manager.login_view = "auth.login"
+login_manager.login_message = "Please log in to access this page."
 login_manager.login_message_category = "warning"
 
 bcrypt = Bcrypt()
@@ -21,5 +24,4 @@ def load_user(user_id):
     Load a user by ID for Flask-Login.
     """
     from app.models.user import User
-
     return User.query.get(int(user_id))

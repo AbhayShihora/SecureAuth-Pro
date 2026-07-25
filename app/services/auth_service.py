@@ -41,7 +41,7 @@ def register_user(form):
         db.session.commit()
 
         #Send OTP email
-        #send_otp_email(user.email, otp)
+        send_otp_email(user.email, otp)
 
         return True, "Registration successful!"
 

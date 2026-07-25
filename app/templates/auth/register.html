@@ -11,33 +11,56 @@ content %}
           {{ form.hidden_tag() }}
 
           <div class="mb-3">
-            {{ form.full_name.label(class="form-label") }} {{
-            form.full_name(class="form-control") }}
+            {{ form.full_name.label(class="form-label") }}
+            {{ form.full_name(class="form-control") }}
+
+            {% for error in form.full_name.errors %}
+                <div class="text-danger small">{{ error }}</div>
+            {% endfor %}
           </div>
 
           <div class="mb-3">
-            {{ form.username.label(class="form-label") }} {{
-            form.username(class="form-control") }}
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-control") }}
+
+            {% for error in form.username.errors %}
+                <div class="text-danger small">{{ error }}</div>
+            {% endfor %}
           </div>
 
           <div class="mb-3">
-            {{ form.email.label(class="form-label") }} {{
-            form.email(class="form-control") }}
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control") }}
+
+            {% for error in form.email.errors %}
+                <div class="text-danger small">{{ error }}</div>
+            {% endfor %}
           </div>
 
           <div class="mb-3">
-            {{ form.password.label(class="form-label") }} {{
-            form.password(class="form-control") }}
-          </div>
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-control") }}
 
+            {% for error in form.password.errors %}
+                <div class="text-danger small">{{ error }}</div>
+            {% endfor %}
+          </div>
           <div class="mb-3">
-            {{ form.confirm_password.label(class="form-label") }} {{
-            form.confirm_password(class="form-control") }}
+            {{ form.confirm_password.label(class="form-label") }}
+            {{ form.confirm_password(class="form-control") }}
+
+            {% for error in form.confirm_password.errors %}
+                <div class="text-danger small">{{ error }}</div>
+            {% endfor %}
           </div>
 
           <div class="form-check mb-3">
-            {{ form.accept_terms(class="form-check-input") }} {{
-            form.accept_terms.label(class="form-check-label") }}
+            {{ form.accept_terms(class="form-check-input") }}
+            {{ form.accept_terms.label(class="form-check-label") }}
+
+            {% for error in form.accept_terms.errors %}
+                <div class="text-danger small">{{ error }}</div>
+            {% endfor %}
           </div>
 
           {{ form.submit(class="btn btn-primary w-100") }}

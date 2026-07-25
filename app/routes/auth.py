@@ -1,12 +1,8 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
 from app.forms.auth_forms import RegistrationForm
 from app.services.auth_service import register_user
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 
 auth = Blueprint("auth", __name__)
-
-
-from flask import Blueprint, render_template, redirect, url_for, flash, request
 
 @auth.route("/register", methods=["GET", "POST"])
 def register():

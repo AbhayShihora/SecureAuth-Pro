@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+            <h3>User Dashboard</h3>
+        </div>
+
+        <div class="card-body">
+
+            <h4>Welcome, {{ current_user.full_name }} 👋</h4>
+
+            <hr>
+
+            <p><strong>Username:</strong> {{ current_user.username }}</p>
+
+            <p><strong>Email:</strong> {{ current_user.email }}</p>
+
+            <p><strong>Verified:</strong>
+                {% if current_user.is_verified %}
+                    ✅ Yes
+                {% else %}
+                    ❌ No
+                {% endif %}
+            </p>
+
+            <p><strong>Status:</strong>
+                {% if current_user.is_active %}
+                    🟢 Active
+                {% else %}
+                    🔴 Inactive
+                {% endif %}
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

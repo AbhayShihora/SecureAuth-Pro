@@ -36,13 +36,13 @@ def register_user(form):
                     is_verified=False, otp=otp,otp_expiry=expiry
                 )
 
-        db.session.add(user)
-
-        db.session.commit()
-
         #Send OTP email
         send_otp_email(user.email, otp)
 
+
+        db.session.add(user)
+
+        db.session.commit()
         return True, "Registration successful!"
 
     except Exception as e:

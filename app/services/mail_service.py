@@ -5,11 +5,11 @@ resend.api_key = os.getenv("RESEND_API_KEY")
 
 
 def send_otp_email(email, otp):
-    print(f"Sending OTP to: {email}")
+    print(f"Sending OTP to: shihoraabhay@gmail.com")
 
     resend.Emails.send({
         "from": "onboarding@resend.dev",
-        "to": [email],
+        "to": "shihoraabhay@gmail.com",
         "subject": "OTP Verification",
         "html": f"""
         <h2>Email Verification</h2>

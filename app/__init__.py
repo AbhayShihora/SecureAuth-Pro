@@ -27,10 +27,6 @@ def create_app():
     mail.init_app(app)
     migrate.init_app(app, db)
 
-    # 👇 ADD THESE 3 LINES
-    with app.app_context():
-        upgrade()
-
     # Flask-Login Configuration
     login_manager.login_message_category = "warning"
 

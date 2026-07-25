@@ -1,35 +1,21 @@
-from flask import current_app
-from flask_mail import Message
-from app.extensions import mail
+import os
+import resend
+
+resend.api_key = os.getenv("RESEND_API_KEY")
 
 
-def send_otp_email(recipient_email, otp):
+def send_otp_email(email, otp):
+    resend.Emails.send({
+        "from": "onboarding@resend.dev",
+        "to": [email],
+        "subject": "OTP Verification",
+        "html": f"""
+        <h2>Email Verification</h2>
 
-    msg = Message(
-        subject="SecureAuth Pro - Email Verification",
-        sender=current_app.config["MAIL_DEFAULT_SENDER"],
-        recipients=[recipient_email]
-    )
+        <p>Your OTP is:</p>
 
-    msg.body = f"""
-    Hello,
+        <h1>{otp}</h1>
 
-    Thank you for registering with SecureAuth Pro.
-
-    Your One-Time Password (OTP) is:
-
-    ========================
-            {otp}
-    ========================
-
-    This OTP is valid for 5 minutes.
-
-    If you did not register, please ignore this email.
-
-    Regards,
-    SecureAuth Pro Team
-    """
-
-    mail.send(msg)
-    print("OTP Email skipped for testing")
-    return
+        <p>This OTP expires in 10 minutes.</p>
+        """
+    })

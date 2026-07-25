@@ -5,7 +5,6 @@ from app.extensions import (
     db,
     login_manager,
     bcrypt,
-    mail,
     migrate,
 )
 
@@ -24,7 +23,6 @@ def create_app():
     db.init_app(app)
     login_manager.init_app(app)
     bcrypt.init_app(app)
-    mail.init_app(app)
     migrate.init_app(app, db)
 
     # Flask-Login Configuration

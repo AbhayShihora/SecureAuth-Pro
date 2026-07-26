@@ -5,17 +5,16 @@ def send_otp_email(email, otp):
     print(f"Sending OTP to: {email}")
 
     msg = Message(
-        subject="OTP Verification",
+        subject="SecureAuth Pro - OTP Verification",
         recipients=[email]
     )
 
-    msg.html = f"""
-    <h2>Email Verification</h2>
-    <h1>{otp}</h1>
-    """
+    msg.body = f"Your OTP is: {otp}"
 
     try:
-        print("✅ OTP email sent successfully.")
+        print("Connecting...")
+        mail.send(msg)
+        print("✅ Email accepted by SMTP server")
     except Exception as e:
-        print("❌ MAIL ERROR:", e)
+        print("❌ SMTP ERROR:", repr(e))
         raise

@@ -1,3 +1,4 @@
+<img width="1240" height="966" alt="HomePage" src="https://github.com/user-attachments/assets/04c405e9-5469-4b85-980e-31e83e6ec277" />
 # 🔐 SecureAuth Pro — Enterprise Authentication & User Management System
 
 <p align="center">
@@ -430,7 +431,7 @@ This separation keeps the project clean, scalable, and easy to maintain.
 ## 🏠 Home Page
 
 <p align="center">
-<img src="images/home.png" alt="Home Page" width="90%">
+<img width="1240" height="966" alt="HomePage" src="https://github.com/user-attachments/assets/1376c9b4-7d23-4dae-b34f-bfa8fdb24e9b" />
 </p>
 
 ---
@@ -438,7 +439,7 @@ This separation keeps the project clean, scalable, and easy to maintain.
 ## 📝 User Registration
 
 <p align="center">
-<img src="images/register.png" alt="Register Page" width="90%">
+<img width="577" height="796" alt="Registration" src="https://github.com/user-attachments/assets/de4e53c3-5475-4555-8787-06f5bdadb867" />
 </p>
 
 ---
@@ -446,7 +447,7 @@ This separation keeps the project clean, scalable, and easy to maintain.
 ## 📧 Email OTP Verification
 
 <p align="center">
-<img src="images/email_otp.png" alt="OTP Verification" width="90%">
+<img width="1534" height="946" alt="Email_Verification" src="https://github.com/user-attachments/assets/28412b84-5565-41e2-bf5b-0359f4a7831f" />
 </p>
 
 ---
@@ -454,7 +455,7 @@ This separation keeps the project clean, scalable, and easy to maintain.
 ## 🔑 Login Page
 
 <p align="center">
-<img src="images/login.png" alt="Login Page" width="90%">
+<img width="540" height="640" alt="Login" src="https://github.com/user-attachments/assets/8f128df2-a237-457a-bb2d-c75d4269afae" />
 </p>
 
 ---
@@ -462,7 +463,7 @@ This separation keeps the project clean, scalable, and easy to maintain.
 ## 🔄 Forgot Password
 
 <p align="center">
-<img src="images/forgot_password.png" alt="Forgot Password" width="90%">
+<img width="574" height="516" alt="Forgot_psw" src="https://github.com/user-attachments/assets/addbd59a-e510-47d9-bf19-af92dbc6228b" />
 </p>
 
 ---
@@ -470,7 +471,7 @@ This separation keeps the project clean, scalable, and easy to maintain.
 ## 🔐 Reset Password
 
 <p align="center">
-<img src="images/reset_password.png" alt="Reset Password" width="90%">
+<img width="574" height="516" alt="Forgot_psw" src="https://github.com/user-attachments/assets/94a669d1-b97b-48a5-8f9a-b4ba2cda442c" />
 </p>
 
 ---
@@ -478,7 +479,7 @@ This separation keeps the project clean, scalable, and easy to maintain.
 ## 👤 User Dashboard
 
 <p align="center">
-<img src="images/dashboard.png" alt="Dashboard" width="90%">
+<img width="1338" height="964" alt="User_Dashboard" src="https://github.com/user-attachments/assets/9c0c7d25-11b3-451b-951f-c53871b766b3" />
 </p>
 
 ---
@@ -486,7 +487,7 @@ This separation keeps the project clean, scalable, and easy to maintain.
 ## 👨‍💼 Admin Dashboard
 
 <p align="center">
-<img src="images/admin_dashboard.png" alt="Admin Dashboard" width="90%">
+<img width="1491" height="968" alt="Admin_Dashboard" src="https://github.com/user-attachments/assets/f4d62f18-3b8f-4e6d-9a50-1d83d02fbd0e" />
 </p>
 
 ---
@@ -494,7 +495,7 @@ This separation keeps the project clean, scalable, and easy to maintain.
 ## 👥 User Management
 
 <p align="center">
-<img src="images/manage_users.png" alt="User Management" width="90%">
+<img width="1505" height="963" alt="Manage_user" src="https://github.com/user-attachments/assets/25f21913-e5c1-44b5-aa12-8b84b4596f4e" />
 </p>
 
 ---

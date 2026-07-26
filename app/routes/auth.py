@@ -155,8 +155,8 @@ def resend_otp():
     return redirect(url_for("auth.verify_otp"))
 
 #Forgot Password Route
-@auth.route("/forgot-password", methods=["GET", "POST"])
-def forgot_password():
+@auth.route("/verify-reset-otp", methods=["GET", "POST"])
+def verify_reset_otp():
 
     form = ForgotPasswordForm()
 

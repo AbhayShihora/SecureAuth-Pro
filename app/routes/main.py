@@ -81,19 +81,19 @@ def change_role(user_id):
     return redirect(url_for("main.manage_users"))
 
 #Delete user route for admin
-@main.route("/admin/delete-user/<int:user_id>")
+@main.route("/admin/delete-user/<int:user_id>", methods=["POST"])
 @login_required
 @admin_required
 def delete_user(user_id):
     user = User.query.get_or_404(user_id)
 
-    # Prevent deleting your own account
     if user.id == current_user.id:
         flash("You cannot delete your own account.", "warning")
         return redirect(url_for("main.manage_users"))
 
     db.session.delete(user)
     db.session.commit()
+
     flash("User deleted successfully.", "success")
 
     return redirect(url_for("main.manage_users"))

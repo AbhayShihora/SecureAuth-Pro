@@ -80,22 +80,19 @@
                 </td>
                 <td>
                     {% if user.id != current_user.id %}
-                        {% if user.role == "user" %}
-                            <a href="{{ url_for('main.delete-user', user_id=user.id) }}"
-                            class="btn btn-primary btn-sm">
-                                Delete Admin
-                            </a>
+                        <form action="{{ url_for('main.delete_user', user_id=user.id) }}"
+                            method="POST"
+                            style="display:inline;"
+                            onsubmit="return confirm('Are you sure you want to delete this user?');">
 
-                        {% else %}
-                            <a href="{{ url_for('main.delete-user', user_id=user.id) }}"
-                            class="btn btn-secondary btn-sm">
-                                Delete User
-                            </a>
-                        {% endif %}
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                Delete
+                            </button>
+
+                        </form>
                     {% else %}
                         --
                     {% endif %}
-
                 </td>
             </tr>
 

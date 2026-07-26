@@ -1,4 +1,3 @@
-<img width="1240" height="966" alt="HomePage" src="https://github.com/user-attachments/assets/04c405e9-5469-4b85-980e-31e83e6ec277" />
 # 🔐 SecureAuth Pro — Enterprise Authentication & User Management System
 
 <p align="center">

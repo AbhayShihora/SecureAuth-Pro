@@ -194,8 +194,47 @@ def verify_reset_otp():
     email = session.get("reset_email")
     print("Email:", email)
 
+    if not email:
+        flash("Session expired.", "warning")
+        return redirect(url_for("auth.forgot_password"))
+
     form = OTPForm()
     print("Form Created")
+
+    if form.validate_on_submit():
+
+        print("===== OTP FORM SUBMITTED =====")
+
+        user = User.query.filter_by(email=email).first()
+
+        if not user:
+            print("User not found")
+            flash("User not found.", "danger")
+            return redirect(url_for("auth.forgot_password"))
+
+        print("Database OTP :", user.otp)
+        print("Entered OTP  :", form.otp.data)
+
+        if str(user.otp) != str(form.otp.data):
+            print("OTP Mismatch")
+            flash("Invalid OTP.", "danger")
+            return render_template("auth/verify_reset_otp.html", form=form)
+
+        if datetime.utcnow() > user.otp_expiry:
+            print("OTP Expired")
+            flash("OTP has expired.", "danger")
+            return render_template("auth/verify_reset_otp.html", form=form)
+
+        print("OTP VERIFIED SUCCESSFULLY")
+
+        session["password_reset_verified"] = True
+
+        return redirect(url_for("auth.reset_password"))
+
+    else:
+        if form.is_submitted():
+            print("FORM VALIDATION FAILED")
+            print(form.errors)
 
     return render_template("auth/verify_reset_otp.html", form=form)
 

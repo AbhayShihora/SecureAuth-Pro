@@ -1,11 +1,33 @@
-body {
-  background: #f8f9fa;
+/* Custom Global Variables & Styling */
+:root {
+  --primary-color: #0d6efd;
+  --bg-gradient: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
 
-.display-4 {
-  font-weight: bold;
+.auth-container {
+  background: var(--bg-gradient);
 }
 
-.navbar-brand {
-  font-weight: bold;
+/* Card & Input Enhancements */
+.auth-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group .form-control:focus {
+  box-shadow: none;
+  border-color: var(--primary-color);
+}
+
+.input-group:focus-within .input-group-text {
+  border-color: var(--primary-color);
+  color: var(--primary-color) !important;
+}
+
+/* Micro Utilities */
+.letter-spacing-2 {
+  letter-spacing: 0.25rem;
+}
+
+.hover-underline:hover {
+  text-decoration: underline !important;
 }

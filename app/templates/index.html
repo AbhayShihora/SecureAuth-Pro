@@ -1,14 +1,117 @@
-{% extends "base.html" %} {% block title %} Home {% endblock %} {% block content
-%}
+{% extends "base.html" %}
 
-<div class="text-center">
-  <h1 class="display-4">🔐 SecureAuth Pro</h1>
+{% block title %}Home - SecureAuth Pro{% endblock %}
 
-  <p class="lead">Enterprise Authentication & User Management System</p>
+{% block content %}
+<div class="container py-5">
 
-  <hr />
+  <!-- Hero Section -->
+  <div class="card border-0 bg-primary text-white shadow-lg rounded-4 overflow-hidden mb-5">
+    <div class="card-body p-4 p-md-5 text-center">
+      <span class="badge bg-white text-primary fw-bold px-3 py-2 rounded-pill mb-3">
+        <i class="bi bi-shield-check"></i> Production-Ready Flask Security
+      </span>
+      <h1 class="display-4 fw-extrabold mb-3">🔐 SecureAuth Pro</h1>
+      <p class="lead text-white-50 max-w-2xl mx-auto mb-4 opacity-90">
+        An enterprise-grade authentication, user role management, and access control platform engineered with Python & Flask.
+      </p>
 
-  <p>Built with Flask ❤️</p>
+      <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+        {% if current_user.is_authenticated %}
+          {% if current_user.role == 'admin' %}
+            <a href="{{ url_for('main.admin_dashboard') if 'admin_dashboard' in url_for.__self__ else '#' }}" class="btn btn-light text-primary btn-lg fw-bold px-4 rounded-pill shadow-sm">
+              Go to Admin Panel &rarr;
+            </a>
+          {% else %}
+            <a href="{{ url_for('main.dashboard') if 'dashboard' in url_for.__self__ else '#' }}" class="btn btn-light text-primary btn-lg fw-bold px-4 rounded-pill shadow-sm">
+              Go to Dashboard &rarr;
+            </a>
+          {% endif %}
+        {% else %}
+          <a href="{{ url_for('auth.login') }}" class="btn btn-light text-primary btn-lg fw-bold px-4 rounded-pill shadow-sm">
+            Sign In
+          </a>
+          <a href="{{ url_for('auth.register') }}" class="btn btn-outline-light btn-lg fw-semibold px-4 rounded-pill">
+            Create Account
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Features Grid -->
+  <div class="row g-4 mb-5">
+    
+    <!-- Feature 1 -->
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm rounded-4 h-100 p-3">
+        <div class="card-body">
+          <div class="bg-primary-subtle text-primary p-3 rounded-3 d-inline-block mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-shield-lock-fill" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.5 1.5 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.158 7.158 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.5 1.5 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0"/>
+            </svg>
+          </div>
+          <h5 class="fw-bold text-dark">Multi-Factor & OTP Auth</h5>
+          <p class="text-secondary small mb-0">
+            Includes secure One-Time Password (OTP) verification for account creation, email verification, and password recovery workflows.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2 -->
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm rounded-4 h-100 p-3">
+        <div class="card-body">
+          <div class="bg-success-subtle text-success p-3 rounded-3 d-inline-block mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-person-gear" viewBox="0 0 16 16">
+              <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m.256 7a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C8.907 9.035 8.47 9 8 9c-5 0-6 3-6 4s1 1 1 1zm3.63-4.54c.12-.359.316-.686.572-.96l.47.27a1.5 1.5 0 0 0 1.5 0l.47-.27c.256.274.453.601.573.96l-.503.226a1.5 1.5 0 0 0 0 1.352l.503.226c-.12.359-.317.686-.573.96l-.47-.27a1.5 1.5 0 0 0-1.5 0l-.47.27c-.256-.274-.452-.601-.572-.96l.503-.226a1.5 1.5 0 0 0 0-1.352z"/>
+            </svg>
+          </div>
+          <h5 class="fw-bold text-dark">Role-Based Access (RBAC)</h5>
+          <p class="text-secondary small mb-0">
+            Granular permissions system isolating standard user dashboards from administrative user management controls.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3 -->
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm rounded-4 h-100 p-3">
+        <div class="card-body">
+          <div class="bg-warning-subtle text-warning p-3 rounded-3 d-inline-block mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-code-slash" viewBox="0 0 16 16">
+              <path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"/>
+            </svg>
+          </div>
+          <h5 class="fw-bold text-dark">Flask-WTF & CSRF Protected</h5>
+          <p class="text-secondary small mb-0">
+            Strict form handling, hashed password storage, token generation, and protection against web security threats.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Tech Stack Banner -->
+  <div class="card border-0 bg-light shadow-sm rounded-4 p-4 text-center">
+    <div class="card-body">
+      <h6 class="text-uppercase text-muted fw-bold mb-3 letter-spacing-2">Tech Stack & Architecture</h6>
+      <div class="d-flex flex-wrap justify-content-center align-items-center gap-4 text-secondary fw-semibold">
+        <span>🐍 Python 3</span>
+        <span>•</span>
+        <span>🌶️ Flask Framework</span>
+        <span>•</span>
+        <span>📝 Flask-WTF</span>
+        <span>•</span>
+        <span>🎨 Bootstrap 5</span>
+        <span>•</span>
+        <span>🔑 Werkzeug Security</span>
+      </div>
+    </div>
+  </div>
+
 </div>
-
 {% endblock %}

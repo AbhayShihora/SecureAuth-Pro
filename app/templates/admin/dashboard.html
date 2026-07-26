@@ -1,21 +1,198 @@
 {% extends "base.html" %}
 
-{% block title %}
-Admin Dashboard
-{% endblock %}
+{% block title %}Admin Dashboard - SecureAuth-Pro{% endblock %}
 
 {% block content %}
+<div class="container py-5">
 
-<div class="container mt-5">
-
-    <div class="alert alert-success">
-        <h2>Welcome Admin 👨‍💼</h2>
-        <p>You have administrator privileges.</p>
+    <!-- Welcome Banner -->
+    <div class="card border-0 bg-primary text-white shadow-sm mb-4 rounded-4 overflow-hidden position-relative">
+        <div class="card-body p-4 p-md-5">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <span class="badge bg-white text-primary fw-bold px-3 py-2 rounded-pill mb-3">
+                        <i class="bi bi-shield-check me-1"></i> Administrator Access
+                    </span>
+                    <h2 class="fw-bold mb-2">Welcome back, Admin 👨‍💼</h2>
+                    <p class="mb-0 text-white-50 opacity-90">
+                        Manage user privileges, system security settings, and monitor authentication activity for SecureAuth-Pro.
+                    </p>
+                </div>
+                <div class="col-md-4 text-md-end mt-3 mt-md-0 d-none d-md-block">
+                    <a href="{{ url_for('main.manage_users') }}" class="btn btn-light text-primary fw-bold px-4 py-2 shadow-sm rounded-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-people-fill me-1" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                        </svg>
+                        Manage Users
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <a href="{{ url_for('main.manage_users') }}" class="btn btn-primary mt-3" >
-        Manage Users
-    </a>
-</div>
+    <!-- Overview Stat Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+            <div class="card border-0 shadow-sm rounded-3 p-3">
+                <div class="d-flex align-items-center">
+                    <div class="bg-primary-subtle text-primary p-3 rounded-3 me-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                            <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1A4.001 4.001 0 0 1 12 8c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 18.828 12.9a1 1 0 0 1-.95 1.103h-10a1 1 0 0 1-.856-.474zm-2.022-8a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-muted small">Registered Users</div>
+                        <div class="fs-4 fw-bold text-dark">Active</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-6 col-md-3">
+            <div class="card border-0 shadow-sm rounded-3 p-3">
+                <div class="d-flex align-items-center">
+                    <div class="bg-success-subtle text-success p-3 rounded-3 me-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-shield-check" viewBox="0 0 16 16">
+                            <path d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.126a.4.4 0 0 0 .143.023c.05 0 .096-.006.143-.023a10 10 0 0 0 .293-.126c.241-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-muted small">MFA Verification</div>
+                        <div class="fs-4 fw-bold text-dark">OTP Ready</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="col-6 col-md-3">
+            <div class="card border-0 shadow-sm rounded-3 p-3">
+                <div class="d-flex align-items-center">
+                    <div class="bg-warning-subtle text-warning p-3 rounded-3 me-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
+                            <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 8.414l-1 1L11.293 8.7a.5.5 0 0 1 0-.707L12 7.293 11.293 6.586a.5.5 0 0 1 0-.707L12 5.172 10.828 4H7.465A4 4 0 0 1 0 8m6 0a2 2 0 1 0-4 0 2 2 0 0 0 4 0"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-muted small">Password Resets</div>
+                        <div class="fs-4 fw-bold text-dark">Enabled</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <div class="card border-0 shadow-sm rounded-3 p-3">
+                <div class="d-flex align-items-center">
+                    <div class="bg-info-subtle text-info p-3 rounded-3 me-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cpu" viewBox="0 0 16 16">
+                            <path d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h.5A1.5 1.5 0 0 1 14 3.5V4h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v.5a1.5 1.5 0 0 1-1.5 1.5H12v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-.5A1.5 1.5 0 0 1 2 12.5V12H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-.5A1.5 1.5 0 0 1 3.5 2H4V.5A.5.5 0 0 1 4.5 0zM3.5 3a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-muted small">System Health</div>
+                        <div class="fs-4 fw-bold text-success">Optimal</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- About the Project Card -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary text-white rounded-circle p-2 me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+                            </svg>
+                        </div>
+                        <h5 class="fw-bold m-0 text-dark">About SecureAuth-Pro</h5>
+                    </div>
+                    
+                    <p class="text-secondary leading-relaxed">
+                        <strong>SecureAuth-Pro</strong> is a robust, production-ready Flask authentication system designed to handle user registration, secure identity management, and access control. Built with industry security standards in mind, it provides seamless multi-tier user journeys.
+                    </p>
+
+                    <div class="row g-3 mt-2">
+                        <div class="col-sm-6">
+                            <div class="p-3 bg-light rounded-3">
+                                <h6 class="fw-bold text-primary mb-1">🔒 High Security Authentication</h6>
+                                <p class="small text-muted mb-0">Hashed password storage, session tokens, and input sanitation prevent common web vulnerabilities.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 bg-light rounded-3">
+                                <h6 class="fw-bold text-primary mb-1">📩 Email & OTP Verification</h6>
+                                <p class="small text-muted mb-0">Two-factor and OTP code verification ensure only valid users verify accounts or perform password resets.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 bg-light rounded-3">
+                                <h6 class="fw-bold text-primary mb-1">👤 Role-Based Access Control</h6>
+                                <p class="small text-muted mb-0">Distinct permission management isolating standard users from privileged admin tasks.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 bg-light rounded-3">
+                                <h6 class="fw-bold text-primary mb-1">⚡ Modern Bootstrap UI</h6>
+                                <p class="small text-muted mb-0">Clean, responsive user experience optimized across mobile, tablet, and desktop viewports.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions Panel -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3 text-dark">Quick Administrative Actions</h5>
+                    
+                    <div class="list-group list-group-flush gap-2 border-0">
+                        <!-- Main Link -->
+                        <a href="{{ url_for('main.manage_users') }}" class="list-group-item list-group-item-action border-0 bg-light rounded-3 p-3 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary text-white rounded-2 p-2 me-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                                        <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1A4.001 4.001 0 0 1 12 8c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 18.828 12.9a1 1 0 0 1-.95 1.103h-10a1 1 0 0 1-.856-.474zm-2.022-8a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="fw-semibold text-dark">User Management</div>
+                                    <div class="small text-muted">View, edit or delete user roles</div>
+                                </div>
+                            </div>
+                            <span class="text-primary">&rarr;</span>
+                        </a>
+
+                        <!-- Example Secondary Action -->
+                        <div class="list-group-item border-0 bg-light rounded-3 p-3 d-flex align-items-center justify-content-between opacity-75">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-secondary text-white rounded-2 p-2 me-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+                                        <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
+                                        <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="fw-semibold text-dark">Security Logs</div>
+                                    <div class="small text-muted">Monitor login attempts</div>
+                                </div>
+                            </div>
+                            <span class="badge bg-secondary">System</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 pt-3 border-top text-center">
+                        <small class="text-muted">Developed by <strong>Abhay Shihora</strong></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 {% endblock %}

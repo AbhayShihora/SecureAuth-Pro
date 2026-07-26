@@ -15,13 +15,6 @@ def send_otp_email(email, otp):
     """
 
     try:
-        try:
-            print("Connecting to SMTP server...")
-            mail.send(msg)
-            print("✅ OTP email sent successfully.")
-        except Exception as e:
-            print("❌ MAIL ERROR:", repr(e))
-            raise
         print("✅ OTP email sent successfully.")
     except Exception as e:
         print("❌ MAIL ERROR:", e)

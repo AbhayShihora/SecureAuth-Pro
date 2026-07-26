@@ -189,33 +189,13 @@ def forgot_password():
 @auth.route("/verify-reset-otp", methods=["GET", "POST"])
 def verify_reset_otp():
 
-    email = session.get("reset_email")
+    print("===== VERIFY RESET OTP ROUTE CALLED =====")
 
-    if not email:
-        flash("Session expired.", "warning")
-        return redirect(url_for("auth.forgot_password"))
+    email = session.get("reset_email")
+    print("Email:", email)
 
     form = OTPForm()
-
-    if form.validate_on_submit():
-
-        user = User.query.filter_by(email=email).first()
-
-        if not user:
-            flash("User not found.", "danger")
-            return redirect(url_for("auth.forgot_password"))
-
-        if user.otp != form.otp.data:
-            flash("Invalid OTP.", "danger")
-            return render_template("auth/verify_reset_otp.html", form=form)
-
-        if datetime.utcnow() > user.otp_expiry:
-            flash("OTP has expired.", "danger")
-            return render_template("auth/verify_reset_otp.html", form=form)
-
-        session["password_reset_verified"] = True
-
-        return redirect(url_for("auth.reset_password"))
+    print("Form Created")
 
     return render_template("auth/verify_reset_otp.html", form=form)
 

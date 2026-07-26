@@ -1,20 +1,50 @@
-from flask_mail import Message
-from app.extensions import mail
+import os
+import requests
+
+BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
+
 
 def send_otp_email(email, otp):
-    print(f"Sending OTP to: {email}")
+    api_key = os.getenv("BREVO_API_KEY")
 
-    msg = Message(
-        subject="SecureAuth Pro - OTP Verification",
-        recipients=[email]
+    headers = {
+        "accept": "application/json",
+        "api-key": api_key,
+        "content-type": "application/json",
+    }
+
+    payload = {
+        "sender": {
+            "name": "SecureAuth Pro",
+            "email": os.getenv("MAIL_DEFAULT_SENDER"),
+        },
+        "to": [
+            {
+                "email": email
+            }
+        ],
+        "subject": "OTP Verification - SecureAuth Pro",
+        "htmlContent": f"""
+        <h2>SecureAuth Pro</h2>
+
+        <p>Your OTP is:</p>
+
+        <h1 style="color:#0d6efd;">{otp}</h1>
+
+        <p>This OTP is valid for 10 minutes.</p>
+
+        <p>If you didn't request this OTP, please ignore this email.</p>
+        """
+    }
+
+    response = requests.post(
+        BREVO_API_URL,
+        headers=headers,
+        json=payload,
+        timeout=15,
     )
 
-    msg.body = f"Your OTP is: {otp}"
+    print("Status Code:", response.status_code)
+    print("Response:", response.text)
 
-    try:
-        print("Connecting...")
-        mail.send(msg)
-        print("✅ Email accepted by SMTP server")
-    except Exception as e:
-        print("❌ SMTP ERROR:", repr(e))
-        raise
+    response.raise_for_status()
